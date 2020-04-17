@@ -1,13 +1,12 @@
-
-
 export class Movie {
   constructor(data) {
     this.title = data.Title;
     this.imdbId = data.imdbID;
     this.poster = data.Poster;
     this.description = data.Plot;
-    this.date = data.Date;
-    this.rating = data.Rating;
+    this.date = new Date(data.Released);
+    this.rating = data.Rated;
+    this.runtime = data.Runtime;
   }
 
   title: string;
@@ -17,4 +16,5 @@ export class Movie {
   poster: string;
   description: string;
   rating: string;
+  runtime: string;
 }
