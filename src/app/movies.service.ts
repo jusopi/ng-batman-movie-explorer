@@ -21,7 +21,7 @@ export class MoviesService {
     return axios.get(url)
       .then(rsp => rsp.data.Search.map(e => e.imdbID))
       .then(rsp => {
-        let rqsts = rsp.map(id => axios.get(`${apiUrl}?apikey=${apiKey}&i=${id}`))
+        let rqsts = rsp.map(id => axios.get(`${apiUrl}?apikey=${apiKey}&i=${id}&plot=full`))
         // console.log(rqsts)
 
         return axios.all(rqsts)
