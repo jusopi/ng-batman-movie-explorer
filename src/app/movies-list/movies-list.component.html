@@ -1,0 +1,13 @@
+<div class="filters">
+  <div class="filter-btns btn-group" role="group">
+    <button type="button" class="btn btn" (click)="selFilter = 'modern'"
+      [ngClass]="[ selFilter == 'modern'? 'btn-primary': 'btn-light' ]">2000's</button>
+    <button type="button" class="btn btn" (click)="selFilter = 'older'"
+      [ngClass]="[ selFilter == 'older'? 'btn-primary': 'btn-light' ]">1990's</button>
+    <button type="button" class="btn btn" (click)="selFilter = ''"
+      [ngClass]="[ !selFilter? 'btn-primary': 'btn-light' ]">All</button>
+  </div>
+</div>
+
+<app-movie-detail *ngFor="let movie of dataProvider" [movie]="movie">
+</app-movie-detail>

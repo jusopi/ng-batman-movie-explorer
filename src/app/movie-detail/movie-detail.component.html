@@ -1,0 +1,21 @@
+<!-- <div class="col-lg-3"> -->
+<div class="mdc row">
+	<img class="col-lg-3" src="{{ movie.poster }}"/>
+	<!-- </div> -->
+	<div class="col-lg-9">
+		<h1>{{ movie.title }}</h1>
+
+		<hr>
+
+		<div class="movie-details">
+			<span class="badge badge-info">{{ movie.rating || 'rating n/a'}}</span>
+			&nbsp;
+			<span class="movie-details-duration">{{ movie.duration || '120 min' }}</span>
+			<span class="movie-details-duration float-right">{{ movie.date | date:'dd LLL yyyy' }}</span>
+		</div>
+
+		<p>{{ movie.description }}</p>
+
+		<a class="btn btn-warning float-right" href="{{ 'https://imdb.com/title/' + movie.imdbId }}" target="_blank" rel="noopener" role="button">View on IMBD</a>
+	</div>
+</div>
