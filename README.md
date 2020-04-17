@@ -1,3 +1,5 @@
 # ng-batman-movie-explorer 
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-uwrzqd)
+[Demo](https://angular-uwrzqd-qzousb.stackblitz.io)
+
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-uwrzqd-qzousb)
