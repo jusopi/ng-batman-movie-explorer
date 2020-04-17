@@ -7,8 +7,7 @@ const c = new Chance();
 
 const apiUrl = "https://www.omdbapi.com/";
 const apiKey = "74422f17";
-const mock = "../assets/movies.json";
-const ratings = ['G', 'PG', 'PG-13', 'R', 'UR']
+const ratings = ["G", "PG", "PG-13", "R", "UR"];
 
 @Injectable()
 export class MoviesService {
@@ -19,29 +18,19 @@ export class MoviesService {
   get(filter?: object) {
     let url = `${apiUrl}?apikey=${apiKey}&s=batman`;
 
-    return axios
-      .get(url)
+    return axios.get(url)
+      .then(rsp => rsp.data.Search.map(e => e.imdbID))
       .then(rsp => {
-        let list: Movie[];
+        let rqsts = rsp.map(id => axios.get(`${apiUrl}?apikey=${apiKey}&i=${id}`))
+        // console.log(rqsts)
 
-        try {
-          list = rsp.data.Search.map(e => {
-            e.Plot = c.paragraph(); // api call doesn't return Plot
-            e.Date = c.date() //filling random date & month
-            if (e.Year){
-              e.Date.setYear(parseInt(e.Year))
-            }
-            e.Rating = c.pickone(ratings)
-
-            return new Movie(e);
-          });
-        } catch (err) {
-          console.warn(err);
-        }
-
-        console.log(list);
-        return list;
+        return axios.all(rqsts)
+          .then(
+            axios.spread((...rsps) => {
+              console.log(rsps)
+              return rsps.map(e => new Movie(e.data))
+            })
+          )
       })
-      .catch(err => console.warn(err));
   }
 }
