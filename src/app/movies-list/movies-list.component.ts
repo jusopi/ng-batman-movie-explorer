@@ -24,15 +24,15 @@ export class MoviesListComponent implements OnInit {
     let filtered = _.chain(this.movies)
     .filter(e => {
       if (sf == 'modern'){
-        console.log('modern')
+        // console.log('modern')
         return e.date.getFullYear() >= 2000
       } 
       else if (sf == 'older') {
-        console.log('older')
+        // console.log('older')
         return e.date.getFullYear() < 2000
       } 
       else {
-        console.log('no fil')
+        // console.log('no fil')
         return true;
       }
     })
